@@ -1,8 +1,13 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "./context/theme-provider.tsx";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 // Components
 import { Layout } from "./components/layout.tsx";
+
+// Create a client
+const queryClient = new QueryClient();
 
 // Pages
 import WeatherDashboard from "./pages/weather-dashboard.tsx";
@@ -13,10 +18,13 @@ function App() {
         <BrowserRouter>
             <ThemeProvider>
                 <Layout>
-                    <Routes>
-                        <Route path='/' element={<WeatherDashboard />} />
-                        <Route path='/city/:cityName' element={<CityPage />} />
-                    </Routes>
+                    <QueryClientProvider client={queryClient}>
+                        <Routes>
+                            <Route path='/' element={<WeatherDashboard />} />
+                            <Route path='/city/:cityName' element={<CityPage />} />
+                        </Routes>
+                        <ReactQueryDevtools initialIsOpen={false} />
+                    </QueryClientProvider>
                 </Layout>
             </ThemeProvider>
         </BrowserRouter>
