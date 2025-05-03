@@ -28,7 +28,7 @@ export function CitySearch() {
     const [open, setOpen] = useState(false);
     const [query, setQuery] = useState("");
 
-    const debouncedValue = useDebounce(query, 500); // waits 500ms after last keypress
+    const debouncedValue = useDebounce(query, 1000); // waits 500ms after last keypress
     const { data: locations, isLoading } = useLocationSearch(debouncedValue);
 
     // const { favorites } = useFavorites();
@@ -62,18 +62,34 @@ export function CitySearch() {
                 <Command>
                     <CommandInput placeholder='Search cities...' value={query} onValueChange={setQuery} />
                     <CommandList>
-                        {/* {query.length > 2 && !isLoading && <CommandEmpty>No cities found.</CommandEmpty>} */}
-                        <CommandGroup heading='Suggestions'>
-                            <CommandItem>Calendar</CommandItem>
-                            <CommandItem>Search Emoji</CommandItem>
-                            <CommandItem>Calculator</CommandItem>
-                        </CommandGroup>
+                        {isLoading && (
+                            <div className='flex items-center justify-center p-4'>
+                                <Loader2 className='h-4 w-4 animate-spin' />
+                            </div>
+                        )}
+
+                        {locations?.length === 0 && !isLoading && <CommandEmpty>No cities found.</CommandEmpty>}
+
+                        {/* Search Results */}
                         <CommandSeparator />
-                        <CommandGroup heading='Settings'>
-                            <CommandItem>Profile</CommandItem>
-                            <CommandItem>Billing</CommandItem>
-                            <CommandItem>Settings</CommandItem>
-                        </CommandGroup>
+                        {locations && locations.length > 0 && !isLoading && (
+                            <CommandGroup heading='Suggestions'>
+                                {locations?.map((location) => (
+                                    <CommandItem
+                                        key={`${location.lat}-${location.lon}`}
+                                        value={`${location.lat}|${location.lon}|${location.name}|${location.country}`}
+                                        onSelect={handleSelect}
+                                    >
+                                        <Search className='mr-2 h-4 w-4' />
+                                        <span>{location.name}</span>
+                                        {location.state && (
+                                            <span className='text-sm text-muted-foreground'>, {location.state}</span>
+                                        )}
+                                        <span className='text-sm text-muted-foreground'>, {location.country}</span>
+                                    </CommandItem>
+                                ))}
+                            </CommandGroup>
+                        )}
                     </CommandList>
                 </Command>
             </CommandDialog>
