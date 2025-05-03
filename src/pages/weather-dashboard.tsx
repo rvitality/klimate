@@ -5,11 +5,11 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import WeatherSkeleton from "@/components/loading-skeleton";
 import { CurrentWeather } from "@/components/current-weather";
 import { HourlyTemperature } from "@/components/hourly-temperature";
+import { WeatherDetails } from "@/components/weather-details";
 
 // Hooks
 import useGeolocation from "@/hooks/use-geolocation";
 import { useReverseGeocodeQuery, useWeatherQuery, useForecastQuery } from "@/hooks/use-weather";
-import { WeatherDetails } from "@/components/weather-details";
 
 const WeatherDashboard = () => {
     const { coordinates, error: locationError, isLoading: isLocationLoading, getLocation } = useGeolocation();
