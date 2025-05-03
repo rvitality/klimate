@@ -3,6 +3,7 @@ import { MapPin, AlertTriangle, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import WeatherSkeleton from "@/components/loading-skeleton";
+import { CurrentWeather } from "@/components/current-weather";
 
 // Hooks
 import useGeolocation from "@/hooks/use-geolocation";
@@ -94,6 +95,18 @@ const WeatherDashboard = () => {
                 >
                     <RefreshCw className={`h-4 w-4 ${weatherQuery.isFetching ? "animate-spin" : ""}`} />
                 </Button>
+            </div>
+
+            <div className='grid gap-6'>
+                <div className='flex flex-col lg:flex-row gap-4'>
+                    <CurrentWeather data={weatherQuery.data} locationName={locationName} />
+                    {/* <HourlyTemperature data={forecastQuery.data} /> */}
+                </div>
+
+                <div className='grid gap-6 md:grid-cols-2 items-start'>
+                    {/* <WeatherDetails data={weatherQuery.data} />
+                    <WeatherForecast data={forecastQuery.data} /> */}
+                </div>
             </div>
         </div>
     );
