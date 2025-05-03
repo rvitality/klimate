@@ -25,15 +25,15 @@ function App() {
     return (
         <BrowserRouter>
             <ThemeProvider>
-                <Layout>
-                    <QueryClientProvider client={queryClient}>
+                <QueryClientProvider client={queryClient}>
+                    <Layout>
                         <Routes>
                             <Route path='/' element={<WeatherDashboard />} />
                             <Route path='/city/:cityName' element={<CityPage />} />
                         </Routes>
                         <ReactQueryDevtools initialIsOpen={false} />
-                    </QueryClientProvider>
-                </Layout>
+                    </Layout>
+                </QueryClientProvider>
             </ThemeProvider>
         </BrowserRouter>
     );
