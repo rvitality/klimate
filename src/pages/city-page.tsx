@@ -7,7 +7,7 @@ import { HourlyTemperature } from "@/components/hourly-temperature";
 import { WeatherDetails } from "@/components/weather-details";
 import { WeatherForecast } from "@/components/weather-forecast";
 import WeatherSkeleton from "@/components/loading-skeleton";
-// import { FavoriteButton } from "@/components/favorite-button";
+import { FavoriteButton } from "@/components/favorite-button";
 
 // Hooks
 import { useWeatherQuery, useForecastQuery } from "@/hooks/use-weather";
@@ -44,7 +44,7 @@ export default function CityPage() {
                     {params.cityName}, {weatherQuery.data.sys.country}
                 </h1>
                 <div className='flex gap-2'>
-                    {/* <FavoriteButton data={{ ...weatherQuery.data, name: params.cityName }} /> */}
+                    <FavoriteButton data={{ ...weatherQuery.data, name: params.cityName }} />
                 </div>
             </div>
 

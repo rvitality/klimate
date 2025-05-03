@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 // Components
 import { Layout } from "./components/layout.tsx";
+import { Toaster } from "./components/ui/sonner";
 
 // Create a client
 const queryClient = new QueryClient({
@@ -23,9 +24,9 @@ import CityPage from "./pages/city-page.tsx";
 
 function App() {
     return (
-        <BrowserRouter>
-            <ThemeProvider>
-                <QueryClientProvider client={queryClient}>
+        <QueryClientProvider client={queryClient}>
+            <BrowserRouter>
+                <ThemeProvider>
                     <Layout>
                         <Routes>
                             <Route path='/' element={<WeatherDashboard />} />
@@ -33,9 +34,10 @@ function App() {
                         </Routes>
                         <ReactQueryDevtools initialIsOpen={false} />
                     </Layout>
-                </QueryClientProvider>
-            </ThemeProvider>
-        </BrowserRouter>
+                    <Toaster richColors />
+                </ThemeProvider>
+            </BrowserRouter>
+        </QueryClientProvider>
     );
 }
 
