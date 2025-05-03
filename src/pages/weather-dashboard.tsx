@@ -9,6 +9,7 @@ import { HourlyTemperature } from "@/components/hourly-temperature";
 // Hooks
 import useGeolocation from "@/hooks/use-geolocation";
 import { useReverseGeocodeQuery, useWeatherQuery, useForecastQuery } from "@/hooks/use-weather";
+import { WeatherDetails } from "@/components/weather-details";
 
 const WeatherDashboard = () => {
     const { coordinates, error: locationError, isLoading: isLocationLoading, getLocation } = useGeolocation();
@@ -105,8 +106,8 @@ const WeatherDashboard = () => {
                 </div>
 
                 <div className='grid gap-6 md:grid-cols-2 items-start'>
-                    {/* <WeatherDetails data={weatherQuery.data} />
-                    <WeatherForecast data={forecastQuery.data} /> */}
+                    <WeatherDetails data={weatherQuery.data} />
+                    {/* <WeatherForecast data={forecastQuery.data} /> */}
                 </div>
             </div>
         </div>
