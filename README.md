@@ -19,3 +19,28 @@
 - ⏳ Loading and error handling with React Query
 - 💾 Caching and background refetching for better performance
 - 📱 Responsive design with dark mode support
+
+
+## 🚀 Getting Started
+
+1. Clone the repo:
+  ```bash
+   git clone https://github.com/rvitality/klimate.git
+   ```
+2. Install dependencies:
+  ```bash
+   npm install
+  ```
+3. Set up your .env file with your OpenWeather API key:
+  ```bash
+  VITE_OPENWEATHER_API_KEY=your_api_key_here
+  ```
+4. Run the development server:
+  ```bash
+  npm run dev
+  ```
+
+## ✨ Credits
+1. [RoadsideCoder](https://www.youtube.com/@RoadsideCoder)
+2. [OpenWeatherAPI](https://openweathermap.org/api)
+
